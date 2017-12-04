@@ -13,7 +13,7 @@
       <script src="../js/angular.min.js"></script>
 		<script src="../js/html5shiv.js" type="text/javascript"></script>
       <script src="../js/jquery.countdown.min.js" type="text/javascript"></script>
-      <script src="../js/ajaxSend.js"></script>
+      
 	</head>
 	<body ng-app="module">
 		<div id="fb-root"></div>
@@ -133,17 +133,7 @@
 			</footer>
 		</div>
 
-        <script type="text/javascript">
-  $("#counting")
-  .countdown("2018/01/01", function(event) {
-	  $(".days").text(event.strftime('%D'));
-	  $(".hours").text(event.strftime('%H'));
-	  $(".minutes").text(event.strftime('%M'));
-	  $(".seconds").text(event.strftime('%S'))
-   /* $(this).text(
-      event.strftime('%D days %H:%M:%S')
-    );*/
-  });
-        </script>
+       
+        <script src="../js/ajaxSend.js"></script>
 	</body>
 </html>
