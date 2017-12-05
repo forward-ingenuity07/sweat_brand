@@ -3,7 +3,7 @@
     var App = angular.module("module", []);
 
     App.controller("controller", function ($scope, $http, $interval) {
-        $scope.meet = "meeting";
+        
         $http({
             method: 'GET',
             url: 'http://forwardingenuity.com/json_competitions.php'
