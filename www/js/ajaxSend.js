@@ -29,8 +29,11 @@
               });
         })
         .catch(function (error) {
-            if (window.localStorage.getItem("prize_stored123") != null) {
-            $scope.prize = window.localStorage.getItem("prize_stored");
+            if (window.localStorage.getItem("prize_stored") != null) {
+                $("#fb-foot").hide();
+                $(".page-container").show();
+
+                $scope.prize = window.localStorage.getItem("prize_stored");
             $("#counting")
               .countdown(window.localStorage.getItem("date_stored"), function (event) {
                   $(".days").text(event.strftime('%D'));
