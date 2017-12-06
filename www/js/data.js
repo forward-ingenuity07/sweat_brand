@@ -27,7 +27,7 @@ angular.module('mobionicApp.data', [])
             title: 'Gallery',
             icon: 'ion-images',
             note: 'Our Photos',
-            url: 'templates/page.html'
+            url: '#/app/gallery'
         },
         { 
             title: 'Stores',
