@@ -83,41 +83,6 @@ angular.module('mobionicApp.controllers', [])
 })
 
 
-// Competitions Controller
-.controller('CompetitionsCtrl', function ($scope, $ionicLoading, CompetitionsData, CompetitionsStorage) {
-
-    $scope.competitions = [];
-    $scope.storage = '';
-
-    $scope.loading = $ionicLoading.show({
-        template: '<i class="icon ion-loading-c"></i> Loading Data',
-
-        //Will a dark overlay or backdrop cover the entire view
-        showBackdrop: false,
-
-        // The delay in showing the indicator
-        showDelay: 10
-    });
-
-    CompetitionsData.async().then(
-        // successCallback
-        function () {
-            $scope.competitions = CompetitionsData.getAll();
-            $scope.letterLimit = CompetitionsData.getLetterLimit();
-            $ionicLoading.hide();
-        },
-        // errorCallback 
-        function () {
-            $scope.competitions = CompetitionsStorage.all();
-            $scope.letterLimit = CompetitionsData.getLetterLimit();
-            $scope.storage = 'Data from local storage';
-            $ionicLoading.hide();
-        },
-        // notifyCallback
-        function () { }
-    );
-
-})
 
 // Product Controller
 .controller('ProductCtrl', function($scope, $stateParams, ProductsData) {

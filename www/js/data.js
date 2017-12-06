@@ -326,44 +326,7 @@ angular.module('mobionicApp.data', [])
     return service;
 })
 
-// Products Data: JSON
-.factory('CompetitionsData', function($http, $q, CompetitionsStorage) {
-    
-    var json = 'json/products.json';
 
-    var deferred = $q.defer();
-    var promise = deferred.promise;
-    var data = [];
-    var service = {};
-
-    service.async = function() {
-    $http({method: 'GET', url: json, timeout: 5000}).
-    // this callback will be called asynchronously
-    // when the response is available.
-    success(function(d) {
-        data = d.result;
-        CompetitionsStorage.save(data);
-        deferred.resolve();
-    }).
-    // called asynchronously if an error occurs
-    // or server returns response with an error status.
-    error(function() {
-        data = CompetitionsStorage.all();
-        deferred.reject();
-    });
-        
-    return promise;
-        
-    };
-
-    service.getAll = function() { return data; };
-
-    service.get = function(productId) { return data[productId]; };
-
-    service.getLetterLimit = function() { return 100; };
-
-    return service;
-})
 
 
 // Gallery Data: Gallery configuration

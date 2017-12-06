@@ -125,15 +125,7 @@ angular.module('mobionicApp', ['ionic', 'mobionicApp.controllers', 'mobionicApp.
       }
     })
 
-        .state('app.competitions', {
-            url: "/competitions",
-            views: {
-                'menuContent': {
-                    templateUrl: "templates/competitions.html",
-                    controller: 'CompetitionsCtrl'
-                }
-            }
-        })
+       
 
 
     .state('app.product', {
