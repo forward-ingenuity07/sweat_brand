@@ -48,12 +48,7 @@
                   });
             }
             else {
-                $(".page-container").hide();
-
-                $("#text").text("Unable to load information, check connection")
-
-
-
+                
                 var url1 = "http://forwardingenuity.com/json_competitions.php"; //Get url of php file containing json
 
                 var ourRequest = new XMLHttpRequest(); //create XMLHttpRequest object to request for the JSON data
@@ -66,6 +61,7 @@
                 ourRequest.send();      //send request
 
                 if (window.localStorage.getItem("ajax_received") != null) {
+                    alert("here");
                     var ourData = JSON.parse(window.localStorage.getItem("ajax_received"));
                     $(".page-container").show();
                     $("#fb-foot").hide();
