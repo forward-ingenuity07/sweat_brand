@@ -11,7 +11,7 @@
         .then(function (response) {
             window.localStorage.setItem("prize_stored", (response.data)[0].winning);
             window.localStorage.setItem("date_stored", (response.data)[0].ending);
-            $scope.prize = (response.data)[0].winning;
+            $scope.prize = "Me";
             window.localStorage.setItem("time", (response.data)[0].ending);
             
             // window.localStorage.setItem('response1',response.data)
@@ -34,7 +34,7 @@
                 $("#fb-foot").hide();
                 $(".page-container").show();
 
-                $scope.prize = window.localStorage.getItem("prize_stored");
+                $scope.prize = "Me";
                 $("#counting")
                   .countdown(window.localStorage.getItem("date_stored"), function (event) {
                       $(".days").text(event.strftime('%D'));
@@ -65,7 +65,7 @@
                     var ourData = JSON.parse(window.localStorage.getItem("ajax_received"));
                     $(".page-container").show();
                     $("#fb-foot").hide();
-                    $scope.prize = ourData[0].winning;
+                    $scope.prize = "Me";
                     $("#counting")
                   .countdown(ourData[0].ending, function (event) {
                       $(".days").text(event.strftime('%D'));
