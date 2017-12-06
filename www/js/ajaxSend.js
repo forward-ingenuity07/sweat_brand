@@ -3,7 +3,8 @@
     var App = angular.module("module", []);
 
     App.controller("controller", function ($scope, $http, $interval) {
-       
+        $scope.facebook_link = "http://www.facebook.com/sweatbrand";
+        $scope.twitter_link = "http://www.twitter.com/sweat_brand";
             $http({
                 method: 'GET',
                 url: 'http://forwardingenuity.com/json_competitions.php'

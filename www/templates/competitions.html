@@ -22,7 +22,7 @@
 	<body ng-app="module">
 		<div id="fb-root"><p id="text" style="color:white;"></p></div>
 
-		<div class="page-container">
+		<div class="page-container" ng-controller="controller">
 			<div class="section header" data-name="Page Content" data-lead-id="competition-page_0_Page-Content_container">
 					<div class="custom-background" data-name="Background Image" data-lead-id="competition-page_1_Background-Image_container">
 						<img data-name="Image" data-lead-id="competition-page_2_Image_background-image" src="img/background.png">
@@ -35,7 +35,7 @@
 								<div class="text-center">
 									<img data-name="Image" data-lead-id="competition-page_5_Image_image" src="../img/Cap.jpg">
 								</div>
-                                <div class="padding-container" ng-controller="controller">
+                                <div class="padding-container">
                                     <h1 class="lora" data-name="Title" data-lead-id="competition-page_6_Title_text">Enter for a chance to win a {{prize}}</h1>
                                     <p data-name="Text" data-lead-id="competition-page_7_Text_text">We’re rewarding one lucky winner with a {{prize}}</p>
                                 </div>
@@ -93,7 +93,7 @@
 										</div>
 										<div class="col-md-4">
 											<div class="like-button" data-name="Like Button" data-lead-id="competition-page_21_Like-Button_dynamic">
-												<img src="../img/like-button.png">
+                                                <a href="{{facebook_link}}"><img src="../img/like-button.png"></a>
 											</div>
 										</div>
 									</div>				
@@ -102,23 +102,13 @@
 									<p data-name="Text" data-lead-id="competition-page_24_Text_text">Each share gets you another entry!</p>
 									<ul class="social" data-name="Social" data-lead-id="competition-page_25_Social_container">
 										<li data-name="Facebook" data-lead-id="competition-page_26_Facebook_container">
-											<a class="share facebook" data-service="facebook" data-name="Facebook Share" data-lead-id="competition-page_27_Facebook-Share_dynamic" href="" target="_blank">
+											<a class="share facebook" data-service="facebook" data-name="Facebook Share" data-lead-id="competition-page_27_Facebook-Share_dynamic" href="{{facebook_link}}" target="_blank">
 												<i class="fa fa-facebook"></i>
 											</a>
 										</li>
 										<li data-name="Twitter" data-lead-id="competition-page_28_Twitter_container">
-											<a class="share twitter" data-service="twitter" data-name="Twitter Share" data-lead-id="competition-page_29_Twitter-Share_dynamic" href="" target="_blank">
+											<a class="share twitter" data-service="twitter" data-name="Twitter Share" data-lead-id="competition-page_29_Twitter-Share_dynamic" href="{{twitter_link}}" target="_blank">
 												<i class="fa fa-twitter"></i>
-											</a>
-										</li>
-										<li data-name="Google Plus" data-lead-id="competition-page_30_Google-Plus_container">
-											<a class="share googleplus" data-service="google" data-name="Google Share" data-lead-id="competition-page_31_Google-Share_dynamic" href="" target="_blank">
-												<i class="fa fa-google-plus"></i>
-											</a>
-										</li>
-										<li data-name="LinkedIn" data-lead-id="competition-page_32_LinkedIn_container">
-											<a class="share linkedin" data-service="linkedin" data-name="LinkedIn Share" data-lead-id="competition-page_33_LinkedIn-Share_dynamic" href="" target="_blank">
-												<i class="fa fa-linkedin"></i>
 											</a>
 										</li>
 									</ul>
