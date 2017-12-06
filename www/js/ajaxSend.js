@@ -3,7 +3,7 @@
     var App = angular.module("module", []);
 
     App.controller("controller", function ($scope, $http, $interval) {
-        $interval(function () {
+       
             $http({
                 method: 'GET',
                 url: 'http://forwardingenuity.com/json_competitions.php'
@@ -51,10 +51,41 @@
                 $(".page-container").hide();
 
                 $("#text").text("Unable to load information, check connection")
+
+
+
+                var url1 = "http://forwardingenuity.com/json_competitions.php"; //Get url of php file containing json
+
+                var ourRequest = new XMLHttpRequest(); //create XMLHttpRequest object to request for the JSON data
+                ourRequest.open("GET", url1);   //Opening...
+
+                ourRequest.onload = function () {
+                    
+                    window.localStorage.setItem("ajax_received", ourRequest.responseText);
+                }
+                ourRequest.send();      //send request
+
+                if (window.localStorage.getItem("ajax_received") != null) {
+                    var ourData = JSON.parse(window.localStorage.getItem("ajax_received"));
+                    $(".page-container").show();
+                    $("#fb-foot").hide();
+                    $scope.prize = ourData[0].winning;
+                    $("#counting")
+                  .countdown(ourData[0].ending, function (event) {
+                      $(".days").text(event.strftime('%D'));
+                      $(".hours").text(event.strftime('%H'));
+
+                      $(".minutes").text(event.strftime('%M'));
+                      $(".seconds").text(event.strftime('%S'))
+                      /* $(this).text(
+                         event.strftime('%D days %H:%M:%S')
+                       );*/
+                  });
+                }
             }
         })
 
-        }, 500)
+       
         
 
 
