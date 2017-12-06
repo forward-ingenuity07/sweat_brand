@@ -21,13 +21,13 @@ angular.module('mobionicApp.data', [])
             title: 'Competitions',
             icon: 'ion-trophy',
             note: 'Start winning',
-            url: 'competitions.html'
+            url: 'templates/competitions.html'
         },
         { 
             title: 'Gallery',
             icon: 'ion-images',
             note: 'Our Photos',
-            url: '#/app/gallery'
+            url: 'templates/page.html'
         },
         { 
             title: 'Stores',
