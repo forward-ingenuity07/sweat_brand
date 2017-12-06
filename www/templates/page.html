@@ -28,7 +28,15 @@
         var App = angular.module("module1", []);
 
         App.controller("cont", function ($scope,$interval,$http) {
-            $scope.ready="Im ready";
+            $scope.ready = "Im ready";
+            $http({
+                method: 'GET',
+                url: 'http://forwardingenuity.com/json_competitions.php'
+            })
+   .then(function (response) {
+       $scope.ready = (response.data)[0].winning;
+       
+   })
 
         })
 
