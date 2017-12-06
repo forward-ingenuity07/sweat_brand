@@ -1,4 +1,3 @@
-(function () {
 
     var App = angular.module("module", []);
 
@@ -88,4 +87,3 @@
 
 
     })
-}());
