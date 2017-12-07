@@ -10,9 +10,14 @@
                 url: 'http://forwardingenuity.com/json_competitions.php'
             })
         .then(function (response) {
-            window.localStorage.setItem("prize_stored1", (response.data)[0].winning);
+            window.localStorage.setItem("prize_stored", (response.data)[0].winning);
+            window.localStorage.setItem("instruction_stored", (response.data)[0].instructions);
             window.localStorage.setItem("date_stored", (response.data)[0].ending);
+            window.localStorage.setItem("image_stored", (response.data)[0].image);
             $scope.prize = (response.data)[0].winning;
+            $scope.image = (response.data)[0].image;
+
+            $scope.instruction = (response.data)[0].instructions;
             window.localStorage.setItem("time", (response.data)[0].ending);
             
             // window.localStorage.setItem('response1',response.data)
@@ -31,11 +36,13 @@
             $interval.cancel();
         })
         .catch(function (error) {
-            if (window.localStorage.getItem("prize_stored1") != null) {
+            if (window.localStorage.getItem("prize_stored") != null) {
                 $("#fb-foot").hide();
                 $(".page-container").show();
 
-                $scope.prize = window.localStorage.getItem("prize_stored1");
+                $scope.prize = window.localStorage.getItem("prize_stored");
+                $scope.instruction = window.localStorage.getItem("instruction_stored");
+                $scope.image = window.localStorage.getItem("image_stored");
                 $("#counting")
                   .countdown(window.localStorage.getItem("date_stored"), function (event) {
                       $(".days").text(event.strftime('%D'));
