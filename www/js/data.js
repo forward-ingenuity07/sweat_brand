@@ -617,7 +617,7 @@ angular.module('mobionicApp.data', [])
     var videosUrl    = apiUrl + 'playlistItems?part=snippet&key=' + youtubeKey + '&maxResults=' + 20;
     var playlistsUrl = apiUrl + 'channels?part=contentDetails&key=' + youtubeKey;
     
-    var username = 'God Over Money';
+    var username = 'apple';
 
     var data = [];
     var result = [];
