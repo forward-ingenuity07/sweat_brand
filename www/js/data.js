@@ -617,7 +617,7 @@ angular.module('mobionicApp.data', [])
     var videosUrl    = apiUrl + 'playlistItems?part=snippet&key=' + youtubeKey + '&maxResults=' + 20;
     var playlistsUrl = apiUrl + 'channels?part=contentDetails&key=' + youtubeKey;
     
-    var username = 'apple';
+    var username = 'FaZe Fitness';
 
     var data = [];
     var result = [];
@@ -635,7 +635,7 @@ angular.module('mobionicApp.data', [])
             deferred.reject();
             }
 
-            var url = videosUrl + '&playlistId=' + playlistId;
+            var url = videosUrl + '&playlistId=' + 'LLxXc7EiyhX8lkn0wJzI5Vzg';
 
             $http({method: 'GET', url: url, timeout: 5000}).
             // this callback will be called asynchronously
