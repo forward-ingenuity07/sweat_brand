@@ -1,0 +1,47 @@
+﻿<div class="modal">
+    <ion-header-bar>
+        <h1 class="title">Sign Up</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closeLogin()">Close</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <form ng-submit="doSignup()">
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">Name</span>
+                    <input type="text" id="name" ng-model="SignupData.name">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Email</span>
+                    <input type="email" id="email" ng-model="SignupData.username">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Password</span>
+                    <input type="password" id="pass" ng-model="SignupData.password">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Province</span>
+                    
+                        <select id="provinces">
+                            <option value="Gauteng" selected>Gauteng</option>
+                            <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+                            <option value="Mpumalanga">Mpumalanga</option>
+                            <option value="Western Cape">Western Cape</option>
+                            <option value="Limpopo">Limpopo</option>
+                            <option value="Eastern Cape">Eastern Cape</option>
+                            <option value="North West">North West</option>
+                            <option value="Free State">Free State</option>
+                            <option value="Northern Cape">Northern Cape</option>
+                        </select>
+                    
+                </label>
+                <label class="item">
+                    <button id="submit_button" class="button button-block button-positive" type="submit">Sign Up</button>
+                </label>
+
+                <center class="item"><a role="button" ng-click="login()">Sign in</a></center>
+            </div>
+        </form>
+    </ion-content>
+</div>

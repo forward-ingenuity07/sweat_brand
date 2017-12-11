@@ -675,41 +675,302 @@ angular.module('mobionicApp.controllers', [])
     
 })
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, MenuData, $ionicActionSheet, $ionicPlatform) {
+.controller('AppCtrl', function($scope, $ionicModal,$ionicLoading, $timeout, MenuData, $ionicActionSheet, $ionicPopup, $http, $ionicPlatform) {
     
   $scope.items = MenuData.items;
     
+  
+
   // Form data for the login modal
   $scope.loginData = {};
 
   // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
+    $ionicModal.fromTemplateUrl('templates/login.html', {
+    id:'1',
     scope: $scope
   }).then(function(modal) {
-    $scope.modal = modal;
+    $scope.modal1 = modal;
   });
+
+    $ionicModal.fromTemplateUrl('templates/signUp.html', {
+        id: '2',
+        scope: $scope
+    }).then(function (modal) {
+        $scope.modal2 = modal;
+    });
 
   // Triggered in the login modal to close it
   $scope.closeLogin = function() {
-    $scope.modal.hide();
+      $scope.modal1.hide();
+      $scope.modal2.hide();
   },
 
   // Open the login modal
   $scope.login = function() {
-    $scope.modal.show();
+      $scope.modal1.show();
+      $scope.modal2.hide();
   };
+  $scope.signup = function () {
+      $scope.modal2.show();
+      $scope.modal1.hide();
+  }
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
 
+      url1="http://www.forwardingenuity.com/sweat_users.php"
+      $http({ method: 'GET', url: url1, timeout: 5000 })
+          .then(function (response) {
+              var username = $("#username").val();
+              var password=$("#password").val();
+
+          for (i = 0; i < 1; i++) {
+              if (username == response.data[i].email) {
+                  if (password == response.data[i].password){
+                      window.localStorage.setItem("Logged", "1");
+                      window.localStorage.setItem("Log_status", "1");
+                      window.localStorage.setItem("Name", response.data[i].name);
+                  break;
+                      }
+              else{
+                  window.localStorage.setItem("Logged", "0");
+                  }
+                  
+              }
+              else
+              {
+                  window.localStorage.setItem("Logged", "0");
+              }
+
+          }
+
+      })
+      .catch(function (error) {
+
+          window.localStorage.setItem("Logged", "2");
+      })
     // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
+      // code if using a login system
+
+    $scope.loading = $ionicLoading.show({
+        template: '<i class="icon ion-loading-c"></i> Logging in',
+
+        //Will a dark overlay or backdrop cover the entire view
+        showBackdrop: false,
+
+        // The delay in showing the indicator
+        showDelay: 10
+    });
+
+    
+
+    $timeout(function () {
+
+        $scope.closeLogin();
+        $ionicLoading.hide();
+        if(window.localStorage.getItem("Logged")=="1"){
+        var myPopup = $ionicPopup.show({
+            template: 'Welcome '+window.localStorage.getItem("Name"),
+            scope: $scope,
+
+            buttons: [
+               { text: 'OK' }, {
+                   
+                   onTap: function (e) {
+
+                       if (!$scope.data.model) {
+                           //don't allow the user to close unless he enters model...
+                           e.preventDefault();
+                       } else {
+                           return $scope.data.model;
+                       }
+                   }
+               }
+            ]
+        });
+        }
+        else if (window.localStorage.getItem("Logged") == "0") {
+            var myPopup = $ionicPopup.show({
+                template: 'Email password combination invalid',
+                scope: $scope,
+
+                buttons: [
+                   { text: 'OK' }, {
+
+                       onTap: function (e) {
+
+                           if (!$scope.data.model) {
+                               //don't allow the user to close unless he enters model...
+                               e.preventDefault();
+                           } else {
+                               return $scope.data.model;
+                           }
+                       }
+                   }
+                ]
+            });
+
+        }
+
+        else if (window.localStorage.getItem("Logged") == "3") {
+            var myPopup = $ionicPopup.show({
+                template: 'Network error, check connection',
+                scope: $scope,
+
+                buttons: [
+                   { text: 'OK' }, {
+
+                       onTap: function (e) {
+
+                           if (!$scope.data.model) {
+                               //don't allow the user to close unless he enters model...
+                               e.preventDefault();
+                           } else {
+                               return $scope.data.model;
+                           }
+                       }
+                   }
+                ]
+            });
+
+        }
+
     }, 1000);
   };
-    
+  
+    // Perform the sign up action when the user submits the login form
+  $scope.doSignup = function () {
+      console.log('Doing sign up', $scope.SignupData);
+
+      $scope.loading = $ionicLoading.show({
+          template: '<i class="icon ion-loading-c"></i> Signing up',
+
+          //Will a dark overlay or backdrop cover the entire view
+          showBackdrop: false,
+
+          // The delay in showing the indicator
+          showDelay: 10
+      });
+
+
+      var url2 = "http://www.forwardingenuity.com/sweat_users_upl.php";
+      var name = $("#name").val();
+      window.localStorage.setItem("Name", name);
+      var email = $("#email").val();
+      var password = $("#pass").val();
+    //  var el = document.getElementById("provinces");
+    //  var province = el.options[el.selectedIndex].value;
+      var province = $('#provinces option:selected').val()
+
+      var dataSt = "name=" + name + "&email=" + email + "&password=" + password + "&province=" + province
+      
+      $.ajax({
+          type: "POST",                                           //method
+          url: url2,     //url   
+          data: dataSt,                                       //data sent as concatinated string
+          crossDomain: true,
+          cache: false,
+          timeout: 5000,
+          beforeSend: function () { $("#submit_button").text('Connecting...'); },
+          success: function (data) {
+              if (data == "success") {
+                  window.localStorage.setItem("signed_up", "1");
+              }
+              else if (data == "error") {
+                  window.localStorage.setItem("signed_up", "2");
+              }
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+              window.localStorage.setItem("signed_up", "3");
+          }
+
+      });
+                    
+                   // return false;
+
+      
+      // Simulate a login delay. Remove this and replace with your login
+      // code if using a login system
+
+      
+
+
+
+      $timeout(function () {
+          $scope.closeLogin();
+          $ionicLoading.hide();
+          $("#submit_button").text('Sign Up')
+          if (window.localStorage.getItem("signed_up") == "1") {
+              var myPopup = $ionicPopup.show({
+                  template: 'Welcome ' + window.localStorage.getItem("Name"),
+                  scope: $scope,
+
+                  buttons: [
+                     { text: 'OK' }, {
+
+                         onTap: function (e) {
+
+                             if (!$scope.data.model) {
+                                 //don't allow the user to close unless he enters model...
+                                 e.preventDefault();
+                             } else {
+                                 return $scope.data.model;
+                             }
+                         }
+                     }
+                  ]
+              });
+          }
+          else if (window.localStorage.getItem("signed_up") == "0") {
+              var myPopup = $ionicPopup.show({
+                  template: 'Error logging in, please try again',
+                  scope: $scope,
+
+                  buttons: [
+                     { text: 'OK' }, {
+
+                         onTap: function (e) {
+
+                             if (!$scope.data.model) {
+                                 //don't allow the user to close unless he enters model...
+                                 e.preventDefault();
+                             } else {
+                                 return $scope.data.model;
+                             }
+                         }
+                     }
+                  ]
+              });
+
+          }
+
+          else if (window.localStorage.getItem("signed_up") == "3") {
+              var myPopup = $ionicPopup.show({
+                  template: 'Network error, please check connection',
+                  scope: $scope,
+
+                  buttons: [
+                     { text: 'OK' }, {
+
+                         onTap: function (e) {
+
+                             if (!$scope.data.model) {
+                                 //don't allow the user to close unless he enters model...
+                                 e.preventDefault();
+                             } else {
+                                 return $scope.data.model;
+                             }
+                         }
+                     }
+                  ]
+              });
+
+          }
+
+      }, 3000);
+  };
+
     // Triggered on a button click, or some other target
     $scope.show = function() {
 
