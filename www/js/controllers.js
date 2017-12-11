@@ -725,7 +725,7 @@ angular.module('mobionicApp.controllers', [])
               var username = $("#username").val();
               var password=$("#password").val();
 
-          for (i = 0; i < 1; i++) {
+          for (i = 0; i < response.data.length; i++) {
               if (username == response.data[i].email) {
                   if (password == response.data[i].password){
                       window.localStorage.setItem("Logged", "1");
@@ -734,7 +734,8 @@ angular.module('mobionicApp.controllers', [])
                   break;
                       }
               else{
-                  window.localStorage.setItem("Logged", "0");
+                      window.localStorage.setItem("Logged", "0");
+                      break;
                   }
                   
               }
