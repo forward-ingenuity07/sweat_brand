@@ -225,9 +225,12 @@
 
 
             $timeout(function () {
-
+                if (window.localStorage.getItem("Logged")=="1"){
                 $scope.closeLogin();
+                }
+                else {
 
+                }
 
             }, 2000);
 
@@ -281,6 +284,7 @@
                 success: function (data) {
                     if (data == "success") {
                         window.localStorage.setItem("signed_up", "1");
+                        window.localStorage.setItem("Logged", "1");
                     }
                     else if (data == "error") {
                         window.localStorage.setItem("signed_up", "2");
@@ -303,10 +307,11 @@
 
 
             $timeout(function () {
-                $scope.closeLogin();
+              //  $scope.closeLogin();
                 $ionicLoading.hide();
                 $("#submit_button").text('Sign Up')
                 if (window.localStorage.getItem("signed_up") == "1") {
+                    
                     var myPopup = $ionicPopup.show({
                         template: 'Welcome ' + window.localStorage.getItem("Name"),
                         scope: $scope,
@@ -374,6 +379,19 @@
                 }
 
             }, 3000);
+
+
+            $timeout(function () {
+              if(window.localStorage.getItem("signed_up") == "1"){
+
+
+                  $scope.closeLogin();
+              }
+              else {
+
+              }
+            }, 4000);
+
         };
 
 
@@ -381,7 +399,7 @@
 
     .controller("button_controller", function ($scope, $ionicModal, $http) {
         $scope.login = function () {
-            if (window.localStorage.getItem("Logged") == "1") {
+            if (window.localStorage.getItem("Loggedasd") == "1") {
                 alert("Logged in");
             }
             else {
