@@ -74,7 +74,7 @@
         $scope.loginData = {};
 
         // Create the login modal that we will use later
-        $ionicModal.fromTemplateUrl('login.html', {
+        $ionicModal.fromTemplateUrl('templates/login.html', {
             id: '1',
             scope: $scope,
             animation: 'slide-in-up',
@@ -86,7 +86,7 @@
             $scope.modal1.show();
         });
 
-        $ionicModal.fromTemplateUrl('signUp.html', {
+        $ionicModal.fromTemplateUrl('templates/signUp.html', {
             id: '2',
             scope: $scope
         }).then(function (modal) {
