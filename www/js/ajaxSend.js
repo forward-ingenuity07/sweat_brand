@@ -4,8 +4,8 @@
 
     App
         .controller("controller", function ($scope, $http, $interval) {
-        $scope.facebook_link = "http://www.facebook.com/sweatbrand";
-        $scope.twitter_link = "http://www.twitter.com/sweat_brand";
+            $scope.facebook_link = "http://www.facebook.com/sweatbrand";
+            $scope.twitter_link = "http://www.twitter.com/sweat_brand";
             $http({
                 method: 'GET',
                 url: 'http://forwardingenuity.com/json_competitions.php'
@@ -20,7 +20,7 @@
 
             $scope.instruction = (response.data)[0].instructions;
             window.localStorage.setItem("time", (response.data)[0].ending);
-            
+
             // window.localStorage.setItem('response1',response.data)
 
             $("#counting")
@@ -68,13 +68,13 @@
 
         })
 
-    .controller("ionic_controller", function ($scope, $ionicModal,  $ionicLoading, $timeout, $ionicPopup, $http) {
+    .controller("ionic_controller", function ($scope, $ionicModal, $ionicLoading, $timeout, $ionicPopup, $http) {
         $scope.win = "Here";
-        
+
         $scope.loginData = {};
 
         // Create the login modal that we will use later
-        $ionicModal.fromTemplateUrl('templates/login.html', {
+        $ionicModal.fromTemplateUrl('login.html', {
             id: '1',
             scope: $scope,
             animation: 'slide-in-up',
@@ -86,7 +86,7 @@
             $scope.modal1.show();
         });
 
-        $ionicModal.fromTemplateUrl('templates/signUp.html', {
+        $ionicModal.fromTemplateUrl('signUp.html', {
             id: '2',
             scope: $scope
         }).then(function (modal) {
@@ -94,7 +94,7 @@
         });
 
         $scope.closeLogin = function () {
-            location.href="competitions.html";
+            location.href = "competitions.html";
 
         }
         $scope.facebook_link = "http://www.facebook.com/sweatbrand";
@@ -102,11 +102,11 @@
         // Perform the login action when the user submits the login form
         $scope.doLogin = function () {
             console.log('Doing login', $scope.loginData);
-    
+
             url1 = "http://www.forwardingenuity.com/sweat_users.php"
             $http({ method: 'GET', url: url1, timeout: 5000 })
                 .then(function (response) {
-                    
+
                     var username = $("#username").val();
                     var password = $("#password").val();
 
@@ -152,7 +152,7 @@
 
             $timeout(function () {
 
-        //        $scope.closeLogin();
+                //        $scope.closeLogin();
                 $ionicLoading.hide();
                 if (window.localStorage.getItem("Logged") == "1") {
                     var myPopup = $ionicPopup.show({
@@ -226,14 +226,14 @@
 
             $timeout(function () {
 
-               $scope.closeLogin();
-                
+                $scope.closeLogin();
+
 
             }, 2000);
 
 
         };
-       
+
         $scope.login = function () {
             $scope.modal1.show();
             $scope.modal2.hide();
@@ -384,10 +384,11 @@
             if (window.localStorage.getItem("Logged") == "1") {
                 alert("Logged in");
             }
-            else{
+            else {
                 location.href = "Notsigned.html";
             }
         }
 
     })
 }());
+
