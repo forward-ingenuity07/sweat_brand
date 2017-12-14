@@ -477,10 +477,11 @@
             });
 
 
-            var filename = "http://www.sweatbrand.forwardingenuity.com/comp_folder/" + $('input[type=file]').val().replace(/C:\\fakepath\\/i, '')
-
+            var filename = "http://www.forwardingenuity.com/comp_folder/" + $('input[type=file]').val().replace(/C:\\fakepath\\/i, '')
+            alert(filename);
             var file = document.querySelector("#afile").files[0];
             var fd = new FormData();
+            alert(file);
             fd.append("afile", file);
             // These extra params aren't necessary but show that you can include other data.
             fd.append("username", "Groucho");
@@ -488,7 +489,7 @@
             var xhr = new XMLHttpRequest();
             var dataString = "&imge=" + filename + "&insert=1";
 
-            xhr.open('POST', 'http://www.sweatbrand.forwardingenuity.com/comp_upload_im.php', true);
+            xhr.open('POST', 'http://www.forwardingenuity.com/comp_upload_im.php', true);
             //var filename = $('input[type=file]').val().replace(/C:\\fakepath\\/i, '')
             xhr.upload.onprogress = function (e) {
                 if (e.lengthComputable) {
@@ -510,7 +511,7 @@
 
 
             $timeout(function () {
-                location.href = 'competitions.html';
+             //   location.href = 'competitions.html';
 
             }, 3000)
 
