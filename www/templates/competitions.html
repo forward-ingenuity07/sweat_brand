@@ -2,14 +2,15 @@
 <html lang="en">
   <head>
 		<title>Competition Sign Up LeadPage</title>
-    <meta charset="utf-8">
-      <meta name="format-detection"
+        <meta charset="utf-8">
+        <meta name="format-detection"
             content="telephone=no" />
       
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *  'unsafe-inline'; script-src *  'unsafe-inline'; media-src *">
       <script src="../lib/ionic/js/ionic.bundle.js"></script>
       <link href="../css/style_comp.css" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!--      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     -->
       <script src="../js/jquery-1.10.2.js"></script>
@@ -46,14 +47,16 @@
 	<body ng-app="module">
 		<div id="fb-root"><p id="text" style="color:white;"></p></div>
 
-		<div class="page-container">
-			<div class="section header" data-name="Page Content" data-lead-id="competition-page_0_Page-Content_container">
-					<div class="custom-background" data-name="Background Image" data-lead-id="competition-page_1_Background-Image_container">
+		<div class="page-container" style="z-index:100;">
+			<div class="section header" style="z-index:100;" data-name="Page Content" data-lead-id="competition-page_0_Page-Content_container">
+					
+                <div class="custom-background" data-name="Background Image" data-lead-id="competition-page_1_Background-Image_container">
 						<img data-name="Image" data-lead-id="competition-page_2_Image_background-image" src="img/background.png">
 					</div>
 					<div class="container">
 						<div class="row flexible">
 							<div data-name="Column 1" data-lead-id="competition-page_3_Column-1_container" class="col-md-6" ng-controller="controller">
+                                <center><a href="../index.html" style="z-index:100; color:white;"><i class="fa fa-home" aria-hidden="true"></i>Home</a></center>
                                 <h1 class="lora text-center" data-name="Title" data-lead-id="competition-page_6_Title_text">COMPETITIONS</h1>
 							
 								<div class="text-center">
@@ -137,7 +140,8 @@
 											</a>
 										</li>
 										<li data-name="Twitter" data-lead-id="competition-page_28_Twitter_container">
-											<a class="share twitter" data-service="twitter" data-name="Twitter Share" data-lead-id="competition-page_29_Twitter-Share_dynamic" href="http://www.twitter.com/sweat_brand" target="_blank">
+                                            
+                                            <a class="share twitter" data-service="twitter" data-name="Twitter Share" data-lead-id="competition-page_29_Twitter-Share_dynamic" href="http://www.twitter.com/sweat_brand" target="_blank">
 												<i class="fa fa-twitter"></i>
 											</a>
 										</li>

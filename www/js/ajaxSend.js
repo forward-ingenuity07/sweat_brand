@@ -69,8 +69,7 @@
         })
 
     .controller("ionic_controller", function ($scope, $ionicModal, $ionicLoading, $timeout, $ionicPopup, $http) {
-        $scope.win = "Here";
-
+        
         $scope.loginData = {};
 
         // Create the login modal that we will use later
@@ -397,10 +396,13 @@
 
     })
 
+
+
+
     .controller("button_controller", function ($scope, $ionicModal, $http) {
         $scope.login = function () {
-            if (window.localStorage.getItem("Loggedasd") == "1") {
-                alert("Logged in");
+            if (window.localStorage.getItem("Logged") == "1") {
+                location.href = "apply_page.html";
             }
             else {
                 location.href = "Notsigned.html";
@@ -408,5 +410,115 @@
         }
 
     })
+
+    .controller("apply_page_controller", function ($scope, $ionicModal, $ionicLoading, $timeout, $ionicPopup, $http) {
+        
+        $scope.loginData = {};
+
+        // Create the login modal that we will use later
+        $ionicModal.fromTemplateUrl('competitions/page1.html', {
+            id: '3',
+            scope: $scope,
+            animation: 'slide-in-up',
+            backdropClickToClose: false,
+            hardwareBackButtonClose: false,
+            focusFirstInput: true
+        }).then(function (modal) {
+            $scope.modal3 = modal;
+            $scope.modal3.show();
+        });
+        
+        $ionicModal.fromTemplateUrl('competitions/page2.html', {
+            id: '4',
+            scope: $scope,
+            animation: 'slide-in-up',
+            backdropClickToClose: false,
+            hardwareBackButtonClose: false,
+            focusFirstInput: true
+        }).then(function (modal) {
+            $scope.modal4 = modal;
+            
+        });
+
+        $scope.doPage1 = function () {
+            
+            $scope.modal3.hide();
+            $scope.modal4.show();
+
+        }
+
+        $scope.previous = function () {
+            
+            $scope.modal4.hide();
+            $scope.modal3.show();
+
+        }
+        
+
+        $scope.doPage2 = function () {
+            var myPopup = $ionicPopup.show({
+            template: 'Thank you ' + window.localStorage.getItem("Name")+' for your submission',
+            scope: $scope,
+
+            buttons: [
+               { text: 'OK' }, {
+
+                   onTap: function (e) {
+
+                       if (!$scope.data.model) {
+                           //don't allow the user to close unless he enters model...
+                           e.preventDefault();
+                       } else {
+                           return $scope.data.model;
+                       }
+                   }
+               }
+            ]
+            });
+
+
+            var filename = "http://www.sweatbrand.forwardingenuity.com/comp_folder/" + $('input[type=file]').val().replace(/C:\\fakepath\\/i, '')
+
+            var file = document.querySelector("#afile").files[0];
+            var fd = new FormData();
+            fd.append("afile", file);
+            // These extra params aren't necessary but show that you can include other data.
+            fd.append("username", "Groucho");
+            fd.append("accountnum", 123456);
+            var xhr = new XMLHttpRequest();
+            var dataString = "&imge=" + filename + "&insert=1";
+
+            xhr.open('POST', 'http://www.sweatbrand.forwardingenuity.com/comp_upload_im.php', true);
+            //var filename = $('input[type=file]').val().replace(/C:\\fakepath\\/i, '')
+            xhr.upload.onprogress = function (e) {
+                if (e.lengthComputable) {
+                    var percentComplete = (e.loaded / e.total) * 100;
+                    console.log(percentComplete + '% uploaded');
+                }
+            };
+            xhr.onload = function () {
+                if (this.status == 200) {
+                    var resp = JSON.parse(this.response);
+                    console.log('Server got:', resp);
+                    var image = document.createElement('img');
+                    image.src = resp.dataUrl;
+                    document.body.appendChild(image);
+                };
+            };
+            xhr.send(fd);
+
+
+
+            $timeout(function () {
+                location.href = 'competitions.html';
+
+            }, 3000)
+
+        }
+
+        
+    })
+
+
 }());
 
