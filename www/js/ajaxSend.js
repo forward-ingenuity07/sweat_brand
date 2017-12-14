@@ -512,7 +512,7 @@
             $timeout(function () {
                 location.href = 'competitions.html';
 
-            }, 3000)
+            }, 1500)
 
         }
 
