@@ -731,6 +731,9 @@ angular.module('mobionicApp.controllers', [])
                       window.localStorage.setItem("Logged", "1");
                       window.localStorage.setItem("Log_status", "1");
                       window.localStorage.setItem("Name", response.data[i].name);
+                      window.localStorage.setItem("Name", response.data[i].name);
+                      window.localStorage.setItem("email", response.data[i].email);
+                      window.localStorage.setItem("province", response.data[i].province);
                   break;
                       }
               else{
@@ -877,6 +880,10 @@ angular.module('mobionicApp.controllers', [])
           success: function (data) {
               if (data == "success") {
                   window.localStorage.setItem("signed_up", "1");
+                  window.localStorage.setItem("Logged", "1");
+                  window.localStorage.setItem("Name", name);
+                  window.localStorage.setItem("email", email);
+                  window.localStorage.setItem("province", province);
               }
               else if (data == "error") {
                   window.localStorage.setItem("signed_up", "2");

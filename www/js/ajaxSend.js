@@ -115,6 +115,8 @@
                                 window.localStorage.setItem("Logged", "1");
                                 window.localStorage.setItem("Log_status", "1");
                                 window.localStorage.setItem("Name", response.data[i].name);
+                                window.localStorage.setItem("email", response.data[i].email);
+                                window.localStorage.setItem("province", response.data[i].province);
                                 break;
                             }
                             else {
@@ -284,6 +286,9 @@
                     if (data == "success") {
                         window.localStorage.setItem("signed_up", "1");
                         window.localStorage.setItem("Logged", "1");
+                        window.localStorage.setItem("Name", name);
+                        window.localStorage.setItem("email", email);
+                        window.localStorage.setItem("province", province);
                     }
                     else if (data == "error") {
                         window.localStorage.setItem("signed_up", "2");
@@ -456,36 +461,34 @@
         
 
         $scope.doPage2 = function () {
-            var myPopup = $ionicPopup.show({
-            template: 'Thank you ' + window.localStorage.getItem("Name")+' for your submission',
-            scope: $scope,
+           
+            $scope.loading = $ionicLoading.show({
+                template: '<i class="icon ion-loading-c"></i> Submitting',
 
-            buttons: [
-               { text: 'OK' }, {
+                //Will a dark overlay or backdrop cover the entire view
+                showBackdrop: false,
 
-                   onTap: function (e) {
-
-                       if (!$scope.data.model) {
-                           //don't allow the user to close unless he enters model...
-                           e.preventDefault();
-                       } else {
-                           return $scope.data.model;
-                       }
-                   }
-               }
-            ]
+                // The delay in showing the indicator
+                showDelay: 10
             });
-
 
 
             var file = document.querySelector("#afile").files[0];
             var fd = new FormData();
             fd.append("afile", file);
+            fd.append("name", window.localStorage.getItem("Name"));
+            fd.append("email", window.localStorage.getItem("email"));
+            fd.append("province", window.localStorage.getItem("province"));
+            
+            var filename = "http://www.sweatbrand.forwardingenuity.com/competition_images/";
+            fd.append("image", filename);
+            
+            //var dataString = "name=" + window.localStorage.getItem("Name") + "&email=" + window.localStorage.getItem("email") + "&province=" + window.localStorage.getItem("province") + "&image=" + filename + "&insert=1";
+
             // These extra params aren't necessary but show that you can include other data.
-            fd.append("username", "Groucho");
-            fd.append("accountnum", 123456);
+            
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'http://www.sweatbrand.forwardingenuity.com/file_upload2.php', true);
+            xhr.open('POST', 'http://www.sweatbrand.forwardingenuity.com/competition_entry.php', true);
             //var filename = $('input[type=file]').val().replace(/C:\\fakepath\\/i, '')
             xhr.upload.onprogress = function (e) {
                 if (e.lengthComputable) {
@@ -505,11 +508,38 @@
             xhr.send(fd);
 
 
-
             $timeout(function () {
-             //   location.href = 'competitions.html';
+                $ionicLoading.hide();
+                var myPopup = $ionicPopup.show({
+                    template: 'Thank you ' + window.localStorage.getItem("Name") + ' for your entry',
+                    scope: $scope,
+
+                    buttons: [
+                       { text: 'OK' }, {
+
+                           onTap: function (e) {
+
+                               if (!$scope.data.model) {
+                                   //don't allow the user to close unless he enters model...
+                                   e.preventDefault();
+                               } else {
+                                   return $scope.data.model;
+                               }
+                           }
+                       }
+                    ]
+                });
+               location.href = 'competitions.html';
 
             }, 3000)
+
+
+            $timeout(function () {
+                
+                location.href = 'competitions.html';
+
+            }, 4000)
+
 
         }
 
