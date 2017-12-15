@@ -485,7 +485,7 @@
             fd.append("username", "Groucho");
             fd.append("accountnum", 123456);
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'http://www.forwardingenuity.com/comp_upload_im.php', true);
+            xhr.open('POST', 'http://www.sweatbrand.forwardingenuity.com/file_upload2.php', true);
             //var filename = $('input[type=file]').val().replace(/C:\\fakepath\\/i, '')
             xhr.upload.onprogress = function (e) {
                 if (e.lengthComputable) {
