@@ -447,7 +447,7 @@
 
         $scope.doPage1 = function () {
             var text=$("#texta").val();
-            window.localStorage.setItem('#text',text);
+            window.localStorage.setItem('text',text);
 
             $scope.modal3.hide();
             $scope.modal4.show();
