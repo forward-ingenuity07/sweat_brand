@@ -498,19 +498,14 @@
                 }
             };
             xhr.onload = function () {
-                if (this.status == 200) {
-                    var resp = JSON.parse(this.response);
-                    console.log('Server got:', resp);
-                    var image = document.createElement('img');
-                    image.src = resp.dataUrl;
-                    alert("submitted")
-                };
+                window.localStorage.setItem("entered", "1");
             };
             xhr.send(fd);
 
 
             $timeout(function () {
                 $ionicLoading.hide();
+                if (window.localStorage.getItem("entered") == "1") {
                 var myPopup = $ionicPopup.show({
                     template: 'Thank you ' + window.localStorage.getItem("Name") + ' for your entry',
                     scope: $scope,
@@ -530,15 +525,40 @@
                        }
                     ]
                 });
-               
+            }
+                else {
+                    
+                    var myPopup = $ionicPopup.show({
+                        template: 'Network error, check connection and try again',
+                        scope: $scope,
+
+                        buttons: [
+                           { text: 'OK' }, {
+
+                               onTap: function (e) {
+
+                                   if (!$scope.data.model) {
+                                       //don't allow the user to close unless he enters model...
+                                       e.preventDefault();
+                                   } else {
+                                       return $scope.data.model;
+                                   }
+                               }
+                           }
+                        ]
+                    });
+                }
 
             }, 3000)
 
 
             $timeout(function () {
-                
+                if(window.localStorage.getItem("entered")=="1"){
                 location.href = 'competitions.html';
+                }
+                else {
 
+                }
             }, 4000)
 
 
