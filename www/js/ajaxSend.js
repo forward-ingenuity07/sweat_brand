@@ -252,15 +252,7 @@
         $scope.doSignup = function () {
             console.log('Doing sign up', $scope.SignupData);
 
-            $scope.loading = $ionicLoading.show({
-                template: '<i class="icon ion-loading-c"></i> Signing up',
-
-                //Will a dark overlay or backdrop cover the entire view
-                showBackdrop: false,
-
-                // The delay in showing the indicator
-                showDelay: 10
-            });
+            
 
 
             var url2 = "http://www.forwardingenuity.com/sweat_users_upl.php";
@@ -273,33 +265,47 @@
             var province = $('#provinces option:selected').val()
 
             var dataSt = "name=" + name + "&email=" + email + "&password=" + password + "&province=" + province
+            if (password != '' && name != '' && email != '') {
+                $scope.loading = $ionicLoading.show({
+                    template: '<i class="icon ion-loading-c"></i> Signing up',
 
-            $.ajax({
-                type: "POST",                                           //method
-                url: url2,     //url   
-                data: dataSt,                                       //data sent as concatinated string
-                crossDomain: true,
-                cache: false,
-                timeout: 5000,
-                beforeSend: function () { $("#submit_button").text('Connecting...'); },
-                success: function (data) {
-                    if (data == "success") {
-                        window.localStorage.setItem("signed_up", "1");
-                        window.localStorage.setItem("Logged", "1");
-                        window.localStorage.setItem("Name", name);
-                        window.localStorage.setItem("email", email);
-                        window.localStorage.setItem("province", province);
+                    //Will a dark overlay or backdrop cover the entire view
+                    showBackdrop: false,
+
+                    // The delay in showing the indicator
+                    showDelay: 10
+                });
+
+                window.localStorage.setItem("empty", "0");
+                $.ajax({
+                    type: "POST",                                           //method
+                    url: url2,     //url   
+                    data: dataSt,                                       //data sent as concatinated string
+                    crossDomain: true,
+                    cache: false,
+                    timeout: 5000,
+                    beforeSend: function () { $("#submit_button").text('Connecting...'); },
+                    success: function (data) {
+                        if (data == "success") {
+                            window.localStorage.setItem("signed_up", "1");
+                            window.localStorage.setItem("Logged", "1");
+                            window.localStorage.setItem("Name", name);
+                            window.localStorage.setItem("email", email);
+                            window.localStorage.setItem("province", province);
+                        }
+                        else if (data == "error") {
+                            window.localStorage.setItem("signed_up", "2");
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        window.localStorage.setItem("signed_up", "3");
                     }
-                    else if (data == "error") {
-                        window.localStorage.setItem("signed_up", "2");
-                    }
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    window.localStorage.setItem("signed_up", "3");
-                }
 
-            });
-
+                });
+            }
+            else {
+                window.localStorage.setItem("empty", "1");
+            }
             // return false;
 
 
@@ -309,92 +315,119 @@
 
 
 
+            if (window.localStorage.getItem("empty") == "0") {
 
-            $timeout(function () {
-              //  $scope.closeLogin();
-                $ionicLoading.hide();
-                $("#submit_button").text('Sign Up')
-                if (window.localStorage.getItem("signed_up") == "1") {
-                    
-                    var myPopup = $ionicPopup.show({
-                        template: 'Welcome ' + window.localStorage.getItem("Name"),
-                        scope: $scope,
+                $timeout(function () {
+                    //  $scope.closeLogin();
+                    $ionicLoading.hide();
+                    $("#submit_button").text('Sign Up')
+                    if (window.localStorage.getItem("signed_up") == "1") {
 
-                        buttons: [
-                           { text: 'OK' }, {
+                        var myPopup = $ionicPopup.show({
+                            template: 'Welcome ' + window.localStorage.getItem("Name"),
+                            scope: $scope,
 
-                               onTap: function (e) {
+                            buttons: [
+                               { text: 'OK' }, {
 
-                                   if (!$scope.data.model) {
-                                       //don't allow the user to close unless he enters model...
-                                       e.preventDefault();
-                                   } else {
-                                       return $scope.data.model;
+                                   onTap: function (e) {
+
+                                       if (!$scope.data.model) {
+                                           //don't allow the user to close unless he enters model...
+                                           e.preventDefault();
+                                       } else {
+                                           return $scope.data.model;
+                                       }
                                    }
                                }
-                           }
-                        ]
-                    });
-                }
-                else if (window.localStorage.getItem("signed_up") == "0") {
-                    var myPopup = $ionicPopup.show({
-                        template: 'Error logging in, please try again',
-                        scope: $scope,
+                            ]
+                        });
+                    }
+                    else if (window.localStorage.getItem("signed_up") == "0") {
+                        var myPopup = $ionicPopup.show({
+                            template: 'Error logging in, please try again',
+                            scope: $scope,
 
-                        buttons: [
-                           { text: 'OK' }, {
+                            buttons: [
+                               { text: 'OK' }, {
 
-                               onTap: function (e) {
+                                   onTap: function (e) {
 
-                                   if (!$scope.data.model) {
-                                       //don't allow the user to close unless he enters model...
-                                       e.preventDefault();
-                                   } else {
-                                       return $scope.data.model;
+                                       if (!$scope.data.model) {
+                                           //don't allow the user to close unless he enters model...
+                                           e.preventDefault();
+                                       } else {
+                                           return $scope.data.model;
+                                       }
                                    }
                                }
-                           }
-                        ]
-                    });
+                            ]
+                        });
 
-                }
+                    }
 
-                else if (window.localStorage.getItem("signed_up") == "3") {
-                    var myPopup = $ionicPopup.show({
-                        template: 'Network error, please check connection',
-                        scope: $scope,
+                    else if (window.localStorage.getItem("signed_up") == "3") {
+                        var myPopup = $ionicPopup.show({
+                            template: 'Network error, please check connection',
+                            scope: $scope,
 
-                        buttons: [
-                           { text: 'OK' }, {
+                            buttons: [
+                               { text: 'OK' }, {
 
-                               onTap: function (e) {
+                                   onTap: function (e) {
 
-                                   if (!$scope.data.model) {
-                                       //don't allow the user to close unless he enters model...
-                                       e.preventDefault();
-                                   } else {
-                                       return $scope.data.model;
+                                       if (!$scope.data.model) {
+                                           //don't allow the user to close unless he enters model...
+                                           e.preventDefault();
+                                       } else {
+                                           return $scope.data.model;
+                                       }
                                    }
                                }
+                            ]
+                        });
+
+                    }
+
+                }, 3000);
+
+
+                $timeout(function () {
+                    if (window.localStorage.getItem("signed_up") == "1") {
+
+
+                        $scope.closeLogin();
+                    }
+                    else {
+
+                    }
+                }, 4000);
+
+
+            }
+            else {
+                var myPopup = $ionicPopup.show({
+                    template: 'Email/Password/Name cannot be left empty',
+                    scope: $scope,
+
+                    buttons: [
+                       { text: 'OK' }, {
+
+                           onTap: function (e) {
+
+                               if (!$scope.data.model) {
+                                   //don't allow the user to close unless he enters model...
+                                   e.preventDefault();
+                               } else {
+                                   return $scope.data.model;
+                               }
                            }
-                        ]
-                    });
+                       }
+                    ]
+                });
 
-                }
-
-            }, 3000);
-
-
-            $timeout(function () {
-              if(window.localStorage.getItem("signed_up") == "1"){
-
-
-                  $scope.closeLogin();
-              }
-              else {
-
-              }
-            }, 4000);
+            }
+            
 
         };
 
@@ -406,7 +439,7 @@
 
     .controller("button_controller", function ($scope, $ionicModal, $http) {
         $scope.login = function () {
-            if (window.localStorage.getItem("Logged") == "1") {
+            if (window.localStorage.getItem("Logged122458") == "1") {
                 location.href = "apply_page.html";
             }
             else {

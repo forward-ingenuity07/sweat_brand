@@ -847,15 +847,7 @@ angular.module('mobionicApp.controllers', [])
   $scope.doSignup = function () {
       console.log('Doing sign up', $scope.SignupData);
 
-      $scope.loading = $ionicLoading.show({
-          template: '<i class="icon ion-loading-c"></i> Signing up',
-
-          //Will a dark overlay or backdrop cover the entire view
-          showBackdrop: false,
-
-          // The delay in showing the indicator
-          showDelay: 10
-      });
+      
 
 
       var url2 = "http://www.forwardingenuity.com/sweat_users_upl.php";
@@ -863,37 +855,56 @@ angular.module('mobionicApp.controllers', [])
       window.localStorage.setItem("Name", name);
       var email = $("#email").val();
       var password = $("#pass").val();
+      
     //  var el = document.getElementById("provinces");
-    //  var province = el.options[el.selectedIndex].value;
+      //  var province = el.options[el.selectedIndex].value;
+
       var province = $('#provinces option:selected').val()
       window.localStorage.setItem("province", province);
       var dataSt = "name=" + name + "&email=" + email + "&password=" + password + "&province=" + province
-      
-      $.ajax({
-          type: "POST",                                           //method
-          url: url2,     //url   
-          data: dataSt,                                       //data sent as concatinated string
-          crossDomain: true,
-          cache: false,
-          timeout: 5000,
-          beforeSend: function () { $("#submit_button").text('Connecting...'); },
-          success: function (data) {
-              if (data == "success") {
-                  window.localStorage.setItem("signed_up", "1");
-                  window.localStorage.setItem("Logged", "1");
-                  window.localStorage.setItem("Name", name);
-                  window.localStorage.setItem("email", email);
-                  window.localStorage.setItem("province", province);
-              }
-              else if (data == "error") {
-                  window.localStorage.setItem("signed_up", "2");
-              }
-          },
-          error: function (jqXHR, textStatus, errorThrown) {
-              window.localStorage.setItem("signed_up", "3");
-          }
+      if (password != '' && name != '' && email != '') {
 
-      });
+          $scope.loading = $ionicLoading.show({
+              template: '<i class="icon ion-loading-c"></i> Signing up',
+
+              //Will a dark overlay or backdrop cover the entire view
+              showBackdrop: false,
+
+              // The delay in showing the indicator
+              showDelay: 10
+          });
+
+          window.localStorage.setItem("empty", "0");
+          $.ajax({
+              type: "POST",                                           //method
+              url: url2,     //url   
+              data: dataSt,                                       //data sent as concatinated string
+              crossDomain: true,
+              cache: false,
+              timeout: 5000,
+              beforeSend: function () { $("#submit_button").text('Connecting...'); },
+              success: function (data) {
+                  if (data == "success") {
+                      window.localStorage.setItem("signed_up", "1");
+                      window.localStorage.setItem("Logged", "1");
+                      window.localStorage.setItem("Name", name);
+                      window.localStorage.setItem("email", email);
+                      window.localStorage.setItem("province", province);
+                  }
+                  else if (data == "error") {
+                      window.localStorage.setItem("signed_up", "2");
+                  }
+              },
+              error: function (jqXHR, textStatus, errorThrown) {
+                  window.localStorage.setItem("signed_up", "3");
+              }
+
+          });
+
+      }
+      else {
+          window.localStorage.setItem("empty", "1");
+      }
                     
                    // return false;
 
@@ -904,8 +915,9 @@ angular.module('mobionicApp.controllers', [])
       
 
 
+      if (window.localStorage.getItem("empty") == "0") {
 
-      $timeout(function () {
+           $timeout(function () {
           $scope.closeLogin();
           $ionicLoading.hide();
           $("#submit_button").text('Sign Up')
@@ -977,6 +989,32 @@ angular.module('mobionicApp.controllers', [])
           }
 
       }, 3000);
+
+      }
+     
+      else {
+          var myPopup = $ionicPopup.show({
+              template: 'Name/Password/email cannot be left empty',
+              scope: $scope,
+
+              buttons: [
+                 { text: 'OK' }, {
+
+                     onTap: function (e) {
+
+                         if (!$scope.data.model) {
+                             //don't allow the user to close unless he enters model...
+                             e.preventDefault();
+                         } else {
+                             return $scope.data.model;
+                         }
+                     }
+                 }
+              ]
+          });
+
+      }
+
   };
 
     // Triggered on a button click, or some other target
