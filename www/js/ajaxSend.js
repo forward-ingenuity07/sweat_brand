@@ -449,7 +449,7 @@
             
             $scope.modal3.hide();
             $scope.modal4.show();
-            window.localStorage.setItem('text', $('texta').val());
+            window.localStorage.setItem('text', $('#texta').val());
 
         }
 
@@ -462,7 +462,7 @@
         
 
         $scope.doPage2 = function () {
-           
+            $("#page2_submit").text('connecting...');
             $scope.loading = $ionicLoading.show({
                 template: '<i class="icon ion-loading-c"></i> Submitting',
 
@@ -555,7 +555,8 @@
 
 
             $timeout(function () {
-                if(window.localStorage.getItem("entered")=="1"){
+                if (window.localStorage.getItem("entered") == "1") {
+                    $("#page2_submit").text('Submit');
                     location.replace('competitions.html');
                 }
                 else {
