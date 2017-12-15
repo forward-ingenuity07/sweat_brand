@@ -494,6 +494,7 @@
                 if (e.lengthComputable) {
                     var percentComplete = (e.loaded / e.total) * 100;
                     console.log(percentComplete + '% uploaded');
+                   
                 }
             };
             xhr.onload = function () {
@@ -502,7 +503,7 @@
                     console.log('Server got:', resp);
                     var image = document.createElement('img');
                     image.src = resp.dataUrl;
-                    document.body.appendChild(image);
+                    alert("submitted")
                 };
             };
             xhr.send(fd);
@@ -529,7 +530,7 @@
                        }
                     ]
                 });
-               location.href = 'competitions.html';
+               
 
             }, 3000)
 
