@@ -478,10 +478,10 @@
 
 
             var filename = "http://www.forwardingenuity.com/comp_folder/" + $('input[type=file]').val().replace(/C:\\fakepath\\/i, '')
-            alert(filename);
+           
             var file = document.querySelector("#afile").files[0];
             var fd = new FormData();
-            alert(file);
+           
             fd.append("afile", file);
             // These extra params aren't necessary but show that you can include other data.
             fd.append("username", "Groucho");
