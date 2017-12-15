@@ -446,11 +446,12 @@
         });
 
         $scope.doPage1 = function () {
-            
+            var text=$("#texta").val();
+            window.localStorage.setItem('#text',text);
+
             $scope.modal3.hide();
             $scope.modal4.show();
-            window.localStorage.setItem('text', $('#texta').val());
-
+            
         }
 
         $scope.previous = function () {
@@ -480,7 +481,7 @@
             fd.append("name", window.localStorage.getItem("Name"));
             fd.append("email", window.localStorage.getItem("email"));
             fd.append("province", window.localStorage.getItem("province"));
-            fd.append("tetx", window.localStorage.getItem("texta"));
+            fd.append("text", window.localStorage.getItem("text"));
 
             var filename = "http://www.sweatbrand.forwardingenuity.com/competition_images/";
             fd.append("image", filename);
