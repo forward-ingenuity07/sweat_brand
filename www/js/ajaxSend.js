@@ -439,7 +439,7 @@
 
     .controller("button_controller", function ($scope, $ionicModal, $http) {
         $scope.login = function () {
-            if (window.localStorage.getItem("Logged122458") == "1") {
+            if (window.localStorage.getItem("Logged") == "1") {
                 location.href = "apply_page.html";
             }
             else {
