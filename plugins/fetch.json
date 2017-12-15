@@ -25,8 +25,9 @@
     },
     "cordova-plugin-file-transfer": {
         "source": {
-            "type": "registry",
-            "id": "cordova-plugin-file-transfer"
+            "type": "git",
+            "url": "https://github.com/apache/cordova-plugin-file-transfer",
+            "subdir": "."
         },
         "is_top_level": true,
         "variables": {}
