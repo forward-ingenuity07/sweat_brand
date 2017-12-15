@@ -866,7 +866,7 @@ angular.module('mobionicApp.controllers', [])
     //  var el = document.getElementById("provinces");
     //  var province = el.options[el.selectedIndex].value;
       var province = $('#provinces option:selected').val()
-
+      window.localStorage.setItem("province", province);
       var dataSt = "name=" + name + "&email=" + email + "&password=" + password + "&province=" + province
       
       $.ajax({
