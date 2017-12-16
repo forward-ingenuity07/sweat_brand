@@ -255,7 +255,7 @@ angular.module('mobionicApp.data', [])
 // News Data: JSON
 .factory('NewsData', function($http, $q, NewsStorage) {
     
-    var json = 'json/news.json';
+    var json = 'http://www.sweatbrand.forwardingenuity.com/news_json.php';
 
     var deferred = $q.defer();
     var promise = deferred.promise;
@@ -267,7 +267,7 @@ angular.module('mobionicApp.data', [])
     // this callback will be called asynchronously
     // when the response is available.
     success(function(d) {
-        data = d.result;
+        data = d;
         NewsStorage.save(data);
         deferred.resolve();
     }).
