@@ -6,10 +6,6 @@
 // Copyright (c) Microsoft Open Technologies Inc
 // Licensed under the MIT license.
 
-
-
-
-
 interface Navigator {
     /** This plugin displays and hides a splash screen during application launch. */
     splashscreen: {
