@@ -117,6 +117,7 @@
                                 window.localStorage.setItem("Name", response.data[i].name);
                                 window.localStorage.setItem("email", response.data[i].email);
                                 window.localStorage.setItem("province", response.data[i].province);
+                                window.localStorage.setItem("user_id", response.data[i].id);
                                 break;
                             }
                             else {
@@ -292,6 +293,15 @@
                             window.localStorage.setItem("Name", name);
                             window.localStorage.setItem("email", email);
                             window.localStorage.setItem("province", province);
+                            url1 = "http://www.forwardingenuity.com/sweat_users.php"
+                            $http({ method: 'GET', url: url1, timeout: 5000 })
+                                .then(function (response) {
+                                    for (var i = 0; i < response.data.length; i++) {
+                                        if (response.data[i].email == window.localStorage.getItem("email")) {
+                                            window.localStorage.setItem("user_id", response.data[i].id);
+                                        }
+                                    }
+                                })
                         }
                         else if (data == "error") {
                             window.localStorage.setItem("signed_up", "2");

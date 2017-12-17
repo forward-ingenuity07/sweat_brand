@@ -167,25 +167,118 @@ angular.module('mobionicApp.controllers', [])
     
 })
 
-// Contact Controller
-.controller('ContactCtrl', function($scope) {
-    
-    $scope.contact = {
-      subject:  '',
-      body: ''
+    .directive('input', function($timeout) {
+  return {
+    restrict: 'E',
+    scope: {
+      'returnClose': '=',
+      'onReturn': '&',
+      'onFocus': '&',
+      'onBlur': '&'
+    },
+    link: function(scope, element, attr) {
+      element.bind('focus', function(e) {
+        if (scope.onFocus) {
+          $timeout(function() {
+            scope.onFocus();
+          });
+        }
+      });
+      element.bind('blur', function(e) {
+        if (scope.onBlur) {
+          $timeout(function() {
+            scope.onBlur();
+          });
+        }
+      });
+      element.bind('keydown', function(e) {
+        if (e.which == 13) {
+          if (scope.returnClose) element[0].blur();
+          if (scope.onReturn) {
+            $timeout(function() {
+              scope.onReturn();
+            });
+          }
+        }
+      });
     }
-    
-    $scope.submitForm = function() {
+  }
+})
 
-        window.plugin.email.open({
-            to:      ['username@company.com'],
-            cc:      ['username1@company.com'],
-            bcc:     ['username2@company.com'],
-            subject: $scope.contact.subject,
-            body:    $scope.contact.body
+
+// Contact Controller
+.controller('ContactCtrl', function ($scope, $timeout, $ionicScrollDelegate) {
+
+    $scope.hideTime = true;
+
+    var alternate,
+      isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
+
+    $scope.sendMessage = function () {
+        alternate = !alternate;
+
+
+
+        var d = new Date();
+        d = d.toLocaleTimeString().replace(/:\d+ /, ' ');
+        var user_id = window.localStorage.getItem("user_id");
+        var message = $scope.data.message;
+        var dataStr = "name=" + window.localStorage.getItem("Name") + "&user_id=" + user_id + "&message=" + message;
+        var url3="http://www.sweatbrand.forwardingenuity.com/message_sent.php"
+        $.ajax({
+              type: "POST",                                           //method
+              url: url3,     //url   
+              data: dataStr,                                       //data sent as concatinated string
+              crossDomain: true,
+              cache: false,
+              timeout: 5000,
+              success: function (data) {
+                  if (data == "success") {
+                      window.localStorage.setItem("message_sent", "1");
+                  }
+                  else if (data == "error") {
+                      window.localStorage.setItem("message_sent", "0");
+                  }
+              },
+              error: function (jqXHR, textStatus, errorThrown) {
+                  window.localStorage.setItem("signed_up", "3");
+              }
+
+          });
+
+        $scope.messages.push({
+            userId: alternate ? '12345' : '54321',
+            text: $scope.data.message,
+            time: d
         });
 
+        delete $scope.data.message;
+        $ionicScrollDelegate.scrollBottom(true);
+
     };
+
+
+    $scope.inputUp = function () {
+        if (isIOS) $scope.data.keyboardHeight = 216;
+        $timeout(function () {
+            $ionicScrollDelegate.scrollBottom(true);
+        }, 300);
+
+    };
+
+    $scope.inputDown = function () {
+        if (isIOS) $scope.data.keyboardHeight = 0;
+        $ionicScrollDelegate.resize();
+    };
+
+    $scope.closeKeyboard = function () {
+        // cordova.plugins.Keyboard.close();
+    };
+
+
+    $scope.data = {};
+    $scope.myId = '12345';
+    $scope.messages = [];
 
 })
 
@@ -734,6 +827,7 @@ angular.module('mobionicApp.controllers', [])
                       window.localStorage.setItem("Name", response.data[i].name);
                       window.localStorage.setItem("email", response.data[i].email);
                       window.localStorage.setItem("province", response.data[i].province);
+                      window.localStorage.setItem("user_id", response.data[i].id);
                   break;
                       }
               else{
@@ -890,6 +984,15 @@ angular.module('mobionicApp.controllers', [])
                       window.localStorage.setItem("Name", name);
                       window.localStorage.setItem("email", email);
                       window.localStorage.setItem("province", province);
+                      url1 = "http://www.forwardingenuity.com/sweat_users.php"
+                      $http({ method: 'GET', url: url1, timeout: 5000 })
+                          .then(function (response) {
+                              for (var i = 0; i < response.data.length; i++) {
+                                  if (response.data[i].email == window.localStorage.getItem("email")) {
+                                      window.localStorage.setItem("user_id", response.data[i].id);
+                                  }
+                              }
+                          })
                   }
                   else if (data == "error") {
                       window.localStorage.setItem("signed_up", "2");
