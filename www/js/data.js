@@ -292,7 +292,7 @@ angular.module('mobionicApp.data', [])
 // Products Data: JSON
 .factory('ProductsData', function($http, $q, ProductsStorage) {
     
-    var json = 'json/products.json';
+    var json = 'http://www.sweatbrand.forwardingenuity.com/products_json.php';
 
     var deferred = $q.defer();
     var promise = deferred.promise;
@@ -304,7 +304,7 @@ angular.module('mobionicApp.data', [])
     // this callback will be called asynchronously
     // when the response is available.
     success(function(d) {
-        data = d.result;
+        data = d;
         ProductsStorage.save(data);
         deferred.resolve();
     }).
