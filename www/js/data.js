@@ -102,26 +102,6 @@ angular.module('mobionicApp.data', [])
             title: 'Home',
             icon: 'ion-home',
             url: '#/app'
-        },        
-        { 
-            title: 'Elements',
-            icon: 'ion-code',
-            url: '#/app/elements'
-        },        
-        { 
-            title: 'Tabs',
-            icon: 'ion-drag',
-            url: '#/app/tabs'
-        },
-        { 
-            title: 'Grid',
-            icon: 'ion-grid',
-            url: '#/app/grid'
-        },
-        { 
-            title: 'RSS (Pull to refresh)',
-            icon: 'ion-social-rss',
-            url: '#/app/feeds-refresher'
         }
     ]; 
     
