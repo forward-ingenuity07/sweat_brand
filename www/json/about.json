@@ -4,41 +4,29 @@
 	"result": [
 		{
 			"id": 1,
-			"picture": "img/member-1.jpg",
-			"title": "Lorem Ipsum",
+			"picture": "img/jojo.jpg",
+			"title": "Johanna M. Ntjana",
 			"subtitle": "Founder & CEO",
-			"body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Duis aute irure dolor eu fugiat nulla pariatur.",
-            "email": "lorem.ipsum@lorem.com",
-            "linkedin": "linkedin",
-            "twitter": "@AppsHybrid"
+			"body": "Your weakness beholds your strength, never dwell on it. Rather look forward to its positive results",
+            "email": "johannapebetse@gmail.com",
+            "twitter": "@Johannapebetse"
             
 		}, {
 			"id": 2,
-			"picture": "img/member-2.jpg",
-			"title": "Lorem Ipsum",
+			"picture": "img/pablo.jpg",
+			"title": "Paballo S.M. Mashilo",
 			"subtitle": "Founder & CEO",
-			"body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Duis aute irure dolor eu fugiat nulla pariatur.",
-            "email": "lorem.ipsum@lorem.com",
-            "linkedin": "linkedin",
-            "twitter": "@AppsHybrid"
+			"body": "Millionaire's Sayings: A wise man knows when to be silent, but more importantly, when to take action.",
+            "email": "selelepoomash@gmail.com",
+            "twitter": "@pablomash"
 		}, {
 			"id": 3,
-			"picture": "img/member-3.jpg",
-			"title": "Lorem Ipsum",
-			"subtitle": "Founder & CEO",
-			"body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Duis aute irure dolor eu fugiat nulla pariatur.",
-            "email": "lorem.ipsum@lorem.com",
-            "linkedin": "linkedin",
-            "twitter": "@AppsHybrid"
-		}, {
-			"id": 4,
-			"picture": "img/member-4.jpg",
-			"title": "Lorem Ipsum",
-			"subtitle": "Founder & CEO",
-			"body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Duis aute irure dolor eu fugiat nulla pariatur.",
-            "email": "lorem.ipsum@lorem.com",
-            "linkedin": "linkedin",
-            "twitter": "@AppsHybrid"
+			"picture": "img/Logo2.jpg",
+			"title": "Sweat Brand",
+			"subtitle": "About the company",
+			"body": "Sweat Brand is the first African sport brand. It was established on 23 July 2016. The brand was founded by young, South African, entrepreneurs, with the mandate of representing atheletes from the local communities, through its innovative sports services and products. The company's mission statement is to represent athletes from a local level to the international level.",
+            "email": "sweatlabel@gmail.com",
+            "twitter": "@Sweat_brand"
 		}
 	]
 }

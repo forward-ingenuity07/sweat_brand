@@ -61,7 +61,7 @@ angular.module('mobionicApp.data', [])
             icon: 'ion-social-youtube',
             note: 'YouTube Videos',
             url: '#/app/youtubevideos'
-        },
+        }
       /*  { 
             title: 'Wordpress JSON',
             icon: 'ion-social-wordpress',
@@ -75,7 +75,7 @@ angular.module('mobionicApp.data', [])
             url: '#/app/serverposts'
         },*/
 
-        {
+      /*  {
             title: 'Feed Plugin',
             icon: 'ion-social-rss-outline',
             note: 'Atom, RSS, or Media RSS',
@@ -87,7 +87,7 @@ angular.module('mobionicApp.data', [])
             icon: 'ion-iphone',
             note: 'Cordova/PhoneGap',
             url: '#/app/plugins'
-        },
+        },*/
     ]; 
     
     return data;

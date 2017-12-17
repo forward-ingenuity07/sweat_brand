@@ -2,11 +2,12 @@
     <ion-content class="has-header">
         
         <div class="padding">
+            <img ng-src="{{member.picture}}" alt="{{member.title}}">
             <h2 class="title">{{member.title}}</h2>
             <p>{{member.subtitle}}</p>
             <p>{{member.body}}</p>
             <p><i class="icon ion-email"></i> {{member.email}}</p>
-            <p><i class="icon ion-social-linkedin"></i> {{member.linkedin}}</p>
+            
             <p><i class="icon ion-social-twitter"></i> {{member.twitter}}</p>
         </div>
 
