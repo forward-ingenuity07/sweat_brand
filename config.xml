@@ -66,15 +66,19 @@
     <icon src="SweatXHDPI.png" density="xhdpi" />
     <icon src="SweatXXHDPI.png" density="xxhdpi" />
     <icon src="SweatXXXHDPI.png" density="xxxhdpi" />
-    <splash src="splash.png" />
-    <splash src="SweatMDPI.png" platform="android" qualifier="ldpi" />
-    <splash src="SweatMDPI.png" platform="android" qualifier="mdpi" />
-    <splash src="SweatHDPI.png" platform="android" qualifier="hdpi" />
-    <splash src="SweatXHDPI.png" platform="android" qualifier="xhdpi" />
-    <splash src="SweatXHDPI.png" platform="android" qualifier="fr-xhdpi" />
-    <splash src="SweatXXHDPI.png" platform="android" qualifier="port-xxhdpi" />
-    <splash src="SweatXXHDPI.png" platform="android" qualifier="land-xxhdpi" />
-    <splash src="SweatXXXHDPI.png" platform="android" qualifier="xxxhdpi" />
+    
+    <splash src="resources/android/splash/drawable-land-ldpi-screen.png" density="land-ldpi" />
+    <splash src="resources/android/splash/drawable-land-mdpi-screen.png" density="land-mdpi" />
+    <splash src="resources/android/splash/drawable-land-hdpi-screen.png" density="land-hdpi" />
+    <splash src="resources/android/splash/drawable-land-xhdpi-screen.png" density="land-xhdpi" />
+    <splash src="resources/android/splash/drawable-land-xxhdpi-screen.png" density="land-xxhdpi" />
+    <splash src="resources/android/splash/drawable-land-xxxhdpi-screen.png" density="land-xxxhdpi" />
+    <splash src="resources/android/splash/drawable-port-ldpi-screen.png" density="port-ldpi" />
+    <splash src="resources/android/splash/drawable-port-mdpi-screen.png" density="port-mdpi" />
+    <splash src="resources/android/splash/drawable-port-hdpi-screen.png" density="port-hdpi" />
+    <splash src="resources/android/splash/drawable-port-xhdpi-screen.png" density="port-xhdpi" />
+    <splash src="resources/android/splash/drawable-port-xxhdpi-screen.png" density="port-xxhdpi" />
+    <splash src="resources/android/splash/drawable-port-xxxhdpi-screen.png" density="port-xxxhdpi" />
   </platform>
   <plugin name="cordova-plugin-whitelist" version="1.3.3" />
   <plugin name="cordova-plugin-file" version="4.3.3" />
