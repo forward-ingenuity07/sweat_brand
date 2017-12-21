@@ -207,15 +207,15 @@ angular.module('mobionicApp.data', [])
     return data;
 })
 
-// Gallery Data: Gallery configuration
+/* Gallery Data: Gallery configuration
 .factory('GalleryData', function(){
     var data = {};
     
     data.items = [
         { 
             label: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-            src: 'img/gallery-1.jpg',
-            location: 'New York, June 2014'
+            src: 'img/photoshoot/PS1.jpg',
+            location: 'HATFIELD,PRETORIA, June 2017'
         },
         { 
             label: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
@@ -231,7 +231,7 @@ angular.module('mobionicApp.data', [])
     
     return data;
 })
-
+*/
 // News Data: JSON
 .factory('NewsData', function($http, $q, NewsStorage) {
     
@@ -316,20 +316,60 @@ angular.module('mobionicApp.data', [])
     var data = {};
     
     data.items = [
-        { 
-            description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-            src: 'img/gallery-1.jpg',
-            location: 'New York, June 2014'
+        {
+            description: 'Sweat brand first photoshoot.',
+            src: 'img/photoshoot/PS1.jpg',
+            location: 'HATFIELD,PRETORIA, JUNE 2017'
         },
-        { 
-            description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
-            src: 'img/gallery-2.jpg',
-            location: 'Athens, August 2013'
+        {
+            description: 'Sweat brand first photoshoot.',
+            src: 'img/photoshoot/PS2.jpg',
+            location: 'HATFIELD,PRETORIA, JUNE 2017'
         },
-        { 
-            description: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-            src: 'img/gallery-3.jpg',
-            location: 'Tokyo, May 2013'
+        {
+            description: 'Sweat brand first photoshoot.',
+            src: 'img/photoshoot/PS3.jpg',
+            location: 'HATFIELD,PRETORIA, JUNE 2017'
+        },
+        {
+            description: 'Sweat brand first photoshoot.',
+            src: 'img/photoshoot/PS4.jpg',
+            location: 'HATFIELD,PRETORIA, JUNE 2017'
+        },
+        {
+            description: 'Sweat brand first photoshoot.',
+            src: 'img/photoshoot/PS5.jpg',
+            location: 'HATFIELD,PRETORIA, JUNE 2017'
+        },
+        {
+            description: 'Sweat brand first photoshoot.',
+            src: 'img/photoshoot/PS6.jpg',
+            location: 'HATFIELD,PRETORIA, JUNE 2017'
+        },
+        {
+            description: 'Sweat brand first photoshoot.',
+            src: 'img/photoshoot/PS7.jpg',
+            location: 'HATFIELD,PRETORIA, JUNE 2017'
+        },
+        {
+            description: 'Sweat brand first photoshoot.',
+            src: 'img/photoshoot/PS8.jpg',
+            location: 'HATFIELD,PRETORIA, JUNE 2017'
+        },
+        {
+            description: 'Sweat brand first photoshoot.',
+            src: 'img/photoshoot/PS9.jpg',
+            location: 'HATFIELD,PRETORIA, JUNE 2017'
+        },
+        {
+            description: 'Sweat brand first photoshoot.',
+            src: 'img/photoshoot/PS10.jpg',
+            location: 'HATFIELD,PRETORIA, JUNE 2017'
+        },
+        {
+            description: 'Sweat brand first photoshoot.',
+            src: 'img/photoshoot/PS11.jpg',
+            location: 'HATFIELD,PRETORIA, JUNE 2017'
         }
     ]; 
     
@@ -597,7 +637,7 @@ angular.module('mobionicApp.data', [])
     var videosUrl    = apiUrl + 'playlistItems?part=snippet&key=' + youtubeKey + '&maxResults=' + 20;
     var playlistsUrl = apiUrl + 'channels?part=contentDetails&key=' + youtubeKey;
     
-    var username = 'apple';
+    var username = 'FitnessBlender';
 
     var data = [];
     var result = [];
@@ -615,7 +655,7 @@ angular.module('mobionicApp.data', [])
             deferred.reject();
             }
 
-            var url = videosUrl + '&playlistId=' + playlistId;
+            var url = videosUrl + '&playlistId=' + 'PL5lPziO_t_Vgo38eyudKETCHOo29WCLqX';
 
             $http({method: 'GET', url: url, timeout: 5000}).
             // this callback will be called asynchronously

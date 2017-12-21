@@ -93,7 +93,7 @@
         });
 
         $scope.closeLogin = function () {
-            location.href = "competitions.html";
+            location.href = "apply_page.html";
 
         }
         $scope.facebook_link = "http://www.facebook.com/sweatbrand";
