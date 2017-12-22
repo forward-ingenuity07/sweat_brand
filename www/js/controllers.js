@@ -223,6 +223,12 @@ angular.module('mobionicApp.controllers', [])
         d = d.toLocaleTimeString().replace(/:\d+ /, ' ');
         var user_id = window.localStorage.getItem("user_id");
         var message = $scope.data.message;
+        if (window.localStorage.getItem("messages") != null) {
+            var messages = [];
+            messages = JSON.parse(window.localStorage.getItem("messages"));
+            messages[messages.length] = message;
+            window.localStorage.setItem("messages", JSON.stringify(messages));
+        }
         var dataStr = "name=" + window.localStorage.getItem("Name") + "&user_id=" + user_id + "&message=" + message;
         var url3="http://www.sweatbrand.forwardingenuity.com/message_sent.php"
         $.ajax({
