@@ -17,6 +17,10 @@
             window.localStorage.setItem("image_stored", (response.data)[0].image);
             $scope.prize = (response.data)[0].winning;
             $scope.image = (response.data)[0].image;
+            if (window.localStorage.getItem("number_competition") != response.data[0].number) {
+                window.localStorage.setItem("entered", "0");
+                window.localStorage.setItem("number_competition", response.data[0].number);
+            }
 
             $scope.instruction = (response.data)[0].instructions;
             window.localStorage.setItem("time", (response.data)[0].ending);
@@ -93,7 +97,7 @@
         });
 
         $scope.closeLogin = function () {
-            location.href = "apply_page.html";
+            location.href = "competitions.html";
 
         }
         $scope.facebook_link = "http://www.facebook.com/sweatbrand";
@@ -447,10 +451,34 @@
 
 
 
-    .controller("button_controller", function ($scope, $ionicModal, $http) {
+    .controller("button_controller", function ($scope, $ionicModal,$ionicPopup, $http) {
         $scope.login = function () {
             if (window.localStorage.getItem("Logged") == "1") {
-                location.href = "apply_page.html";
+                if (window.localStorage.getItem("entered") == "1") {
+                    var myPopup = $ionicPopup.show({
+                        template: 'Thank you ' + window.localStorage.getItem("Name") + ' your entry was received',
+                        scope: $scope,
+
+                        buttons: [
+                           { text: 'OK' }, {
+
+                               onTap: function (e) {
+
+                                   if (!$scope.data.model) {
+                                       //don't allow the user to close unless he enters model...
+                                       e.preventDefault();
+                                   } else {
+                                       return $scope.data.model;
+                                   }
+                               }
+                           }
+                        ]
+                    });
+                }
+                else {
+                    location.href = "apply_page.html";
+                }
+                
             }
             else {
                 location.href = "Notsigned.html";
@@ -462,7 +490,10 @@
     .controller("apply_page_controller", function ($scope, $ionicModal, $ionicLoading, $timeout, $ionicPopup, $http) {
         
         $scope.loginData = {};
+        $scope.clos = function () {
+            location.href = "competitions.html";
 
+        }
         // Create the login modal that we will use later
         $ionicModal.fromTemplateUrl('competitions/page1.html', {
             id: '3',
@@ -601,6 +632,7 @@
             $timeout(function () {
                 if (window.localStorage.getItem("entered") == "1") {
                     $("#page2_submit").text('Submit');
+                    window.localStorage.setItem("entered", "1");
                     location.replace('competitions.html');
                 }
                 else {
