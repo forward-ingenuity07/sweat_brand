@@ -81,6 +81,5 @@
   </platform>
   <plugin name="cordova-plugin-whitelist" version="1.3.3" />
   <plugin name="cordova-plugin-file" version="4.3.3" />
-  <plugin name="cordova-plugin-splashscreen" version="4.1.0" />
-  <plugin name="cordova-plugin-badge" version="0.8.5" src="https://github.com/katzer/cordova-plugin-badge" />
+  <plugin name="cordova-plugin-splashscreen" version="5.0.1" />
 </widget>

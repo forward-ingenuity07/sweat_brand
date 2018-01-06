@@ -9,7 +9,8 @@
 			"subtitle": "Founder & Chairperson",
 			"body": "Your weakness beholds your strength, never dwell on it. Rather look forward to its positive results.",
             "email": "johannapebetse@gmail.com",
-            "twitter": "@Johannapebetse"
+            "twitter": "@Johannapebetse",
+      "website":  "www.sweatbrand.net"
             
 		}, {
 			"id": 2,
@@ -18,7 +19,8 @@
 			"subtitle": "Founder & CEO",
 			"body": "Millionaire's Sayings: A wise man knows when to be silent, but more importantly, when to take action.",
             "email": "selelepoomash@gmail.com",
-            "twitter": "@pablomash"
+            "twitter": "@pablomash",
+      "website":  "www.sweatbrand.net"
 		}, {
 			"id": 3,
 			"picture": "img/Logo2.jpg",
@@ -26,7 +28,8 @@
 			"subtitle": "About the company",
 			"body": "Sweat Brand is the first African sports brand. It was established on 23 July 2016. The brand was founded by young, South African, entrepreneurs, with the mandate of representing atheletes from the local communities, through its innovative sports services and products. The company's mission statement is to represent athletes from a local level to the international level.",
             "email": "sweatlabel@gmail.com",
-            "twitter": "@Sweat_brand"
+      "twitter": "@Sweat_brand",
+      "website":  "www.sweatbrand.net"
 		}
 	]
 }
